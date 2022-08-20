@@ -26,7 +26,7 @@ describe('Signup', ()=>{
     it.only('nâo deve cadastrar com instagram cadastrado', ()=> {
 
         const user = {
-            name: 'Erick Jacquin',
+            name: 'Érick Jacquin',
             instagram: '@jacquin',
             password: 'pwd123'
         }

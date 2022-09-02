@@ -1,5 +1,6 @@
 exports.el = {
-    logged: '.logged-user'
+    logged: '.logged-user',
+    createLink: 'a[href="/foodtrucks/create"]'
 }
 
 

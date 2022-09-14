@@ -1,15 +1,22 @@
 import loginPage from '../support/pages/Login'
 import mapPage from '../support/pages/Map'
 
+import users from '../fixtures/login-users.json'
+
 describe('Login', () => {
 
+  // before(() => {
+  //   cy.fixture('login-users').then(function (users){
+  //     this.users = users
+  //   })
+  // })
+
   it('Deve logar com sucesso', () => {
-      const user = {
-      name: 'Bruno',
-      instagram: '@bruno.saraujo',
-      password: 'pwd123'
-    }
     
+    const user = users.success
+
+    cy.apiCreateUser(user)
+
     loginPage.go()
     loginPage.form(user)
     loginPage.submit()
@@ -19,10 +26,7 @@ describe('Login', () => {
 
   it('não deve logar com senha inválida', ()=> {
     
-    const user = {
-      instagram: '@bruno.saraujo',
-      password: 'pwd12'
-    }
+    const user = users.invalid_user
 
     loginPage.go()
     loginPage.form(user)
@@ -33,10 +37,7 @@ describe('Login', () => {
 
   it('não deve logar com instagram inexistente', ()=> {
     
-    const user = {
-      instagram: '@saraujo.bruno',
-      password: 'pwd123'
-    }  
+    const user = users.not_found
     
     loginPage.go()
     loginPage.form(user)
@@ -47,9 +48,7 @@ describe('Login', () => {
 
   it('instagram deve ser obrigatório', ()=> {
     
-    const user = {
-      password: 'pwd12'
-    }
+    const user = users.required_inst
 
     loginPage.go()
     loginPage.form(user)
@@ -60,9 +59,7 @@ describe('Login', () => {
 
   it('senha deve ser obrigatória', ()=> {
     
-    const user = {
-      instagram: '@bruno.saraujo'
-    }
+    const user = users.required_pass
 
     loginPage.go()
     loginPage.form(user)    

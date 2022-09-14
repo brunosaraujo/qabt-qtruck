@@ -1,0 +1,22 @@
+
+{
+    "success": {
+        "name": "Bruno",
+        "instagram": "@bruno.saraujo",
+        "password": "pwd123"
+    },
+    "invalid_user": {
+        "instagram": "@bruno.saraujo",
+        "password": "pwd12"
+    },
+    "not_found": {
+        "instagram": "@not_found",
+        "password": "pwd12"
+    },
+    "required_inst": {
+        "password": "pwd12"
+    },
+    "required_pass": {
+        "instagram": "@bruno.saraujo"
+    }
+}

@@ -1,30 +1,27 @@
-
+import mapPage from '../support/pages/Map'
+import foodTruckPage from '../support/pages/Foodtruck'
 
 
 describe('Avalidações', ()=> {
     
     it('deve enviar uma nova avaliação', ()=>{
 
-        const user = {
-            name: 'Seu Madruga',
-            instagram: '@madruguinha',
-            password: 'pwd123'
-        }
-        
-        const foodtruck = {
-            latitude: '-23.584642248123703',
-            longitude:'-46.67472571134568',
-            name: 'Super de Quico',
-            details: 'Sucos de alta qualidadedireto do saquinho',
-            opening_hours: 'das 14h às 20h',
-            open_on_weekends: false
-        }
+        cy.fixture('review').as('userReview')
 
-        cy.apiCreateUser(user)
-        cy.apiLogin(user)
-        cy.apiCreateFoodTruck(foodtruck)
+        cy.get('@userReview').then((data)=> {
 
-        cy.uiLogin(user)
-        
+            cy.apiCreateUser(data.user)
+            cy.apiLogin(data.user)
+            cy.apiCreateFoodTruck(data.foodtruck)
+
+            cy.uiLogin(data.user)
+
+            mapPage.goToFoodTruck(data.foodtruck.name)
+            foodTruckPage.addReview(data.review)
+            foodTruckPage.reviewShouldBe(data.user, data.review)    
+
+        })
+            
     })
+
 })

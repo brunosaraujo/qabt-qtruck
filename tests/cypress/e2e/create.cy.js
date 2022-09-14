@@ -1,7 +1,7 @@
 import mapPage from '../support/pages/Map'
 import createPage from '../support/pages/Create'
 
-describe('Recomendção', ()=> {
+describe('Recomendação', ()=> {
 
     it('deve recomentada um food truck', ()=>{
 
